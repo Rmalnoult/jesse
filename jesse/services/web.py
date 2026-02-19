@@ -6,8 +6,10 @@ from pydantic import BaseModel
 
 fastapi_app = FastAPI()
 
+# HARDENED: Only allow localhost origins — no external access
 origins = [
-    "*",
+    "http://127.0.0.1",
+    "http://localhost",
 ]
 
 fastapi_app.add_middleware(

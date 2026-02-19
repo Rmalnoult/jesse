@@ -26,7 +26,7 @@ def _init_main_logger():
         filename = 'storage/logs/etc.txt'
 
     new_logger = logging.getLogger(jh.app_mode())
-    new_logger.setLevel(logging.INFO)
+    new_logger.setLevel(logging.DEBUG)
     new_logger.addHandler(logging.FileHandler(filename, mode='w'))
     LOGGERS[jh.app_mode()] = new_logger
 
@@ -36,7 +36,7 @@ def create_logger_file(name):
     log_file = f"storage/logs/{name}.txt"
     os.makedirs(os.path.dirname(log_file), exist_ok=True)
     new_logger = logging.getLogger(name)
-    new_logger.setLevel(logging.INFO)
+    new_logger.setLevel(logging.DEBUG)
     new_logger.addHandler(logging.FileHandler(log_file, mode='a'))
     LOGGERS[name] = new_logger
 
@@ -129,7 +129,7 @@ def log_exchange_message(exchange, message):
         log_file = f"storage/logs/{logger_name}.txt"
         os.makedirs(os.path.dirname(log_file), exist_ok=True)
         new_logger = logging.getLogger(logger_name)
-        new_logger.setLevel(logging.INFO)
+        new_logger.setLevel(logging.DEBUG)
         new_logger.addHandler(logging.FileHandler(log_file, mode='w'))
         LOGGERS[logger_name] = new_logger
 

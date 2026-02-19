@@ -21,7 +21,7 @@ config = {
             'position_increased': True,
             'position_reduced': True,
             'position_closed': True,
-            'shorter_period_candles': False,
+            'shorter_period_candles': True,  # HARDENED: max logging
             'trading_candles': True,
             'balance_update': True,
             'exchange_ws_reconnection': True

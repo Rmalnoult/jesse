@@ -93,16 +93,13 @@ def run() -> None:
     else:
         host = "0.0.0.0"
 
-    # run the lsp server
-    try:
-        from jesse.services.lsp import run_lsp_server
+    # LSP server disabled — headless mode, no external interfaces
+    print("[HARDENED] LSP server disabled (headless mode)")
 
-        run_lsp_server()
-    except Exception as e:
-        print(jh.color(f"Error running Python Language Server: {str(e)}", "red"))
-        pass
-
-    # run the main application
+    # HARDENED: Web server disabled — no external interfaces
+    # Bind only to localhost (127.0.0.1) as a safety net
+    host = "127.0.0.1"
+    print(f"[HARDENED] Web server bound to {host}:{port} (localhost only, no external access)")
     process_manager.flush()
-    uvicorn.run(fastapi_app, host=host, port=port, log_level="info")
+    uvicorn.run(fastapi_app, host=host, port=port, log_level="debug")
 
